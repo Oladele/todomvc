@@ -6,6 +6,7 @@
 		<title>Marionette • TodoMVC</title>
 		<link rel="stylesheet" href="../../../assets/base.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/task.css">
 		<!--[if IE]>
 		<script src="../../../assets/ie.js"></script>
 		<![endif]-->
@@ -36,8 +37,10 @@
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label><%= title %></label>
 				<button class="destroy"></button>
+				<button class="new-task"></button>
 			</div>
 			<input class="edit" value="<%= title %>">
+			<div id="tasks"></div>
 		</script>
 
 		<script type="text/html" id="template-todoListCompositeView">
