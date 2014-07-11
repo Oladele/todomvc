@@ -38,9 +38,14 @@
 				<label><%= title %></label>
 				<button class="destroy"></button>
 				<button class="new-task"></button>
+				<div id="tasks"></div>
 			</div>
 			<input class="edit" value="<%= title %>">
-			<div id="tasks"></div>
+		</script>
+
+		<!-- template-taskItemView -->
+		<script type="text/html" id="template-taskItemView">
+			<div><%= title %></div>
 		</script>
 
 		<script type="text/html" id="template-todoListCompositeView">
@@ -48,6 +53,13 @@
 			<label for="toggle-all">Mark all as complete</label>
 			<ul id="todo-list"></ul>
 		</script>
+
+		<!-- template-taskListCompositView -->
+		<script type="text/html" id="template-taskListCompositeView">
+			<div>Tasks</div>
+			<ul id="task-list"></ul>
+		</script>
+
 	</head>
 	<body>
 		<section id="todoapp">
@@ -74,9 +86,13 @@
 		<!-- application -->
 		<script src="js/TodoMVC.js"></script>
 		<script src="js/TodoMVC.Todos.js"></script>
+		<script src="js/TodoMVC.Tasks.js"></script>
 		<script src="js/TodoMVC.Layout.js"></script>
+		<script src="js/TodoMVC.TaskList.js"></script>
 		<script src="js/TodoMVC.TodoList.Views.js"></script>
+		<script src="js/TodoMVC.TaskList.Views.js"></script>
 		<script src="js/TodoMVC.TodoList.js"></script>
+
 		<script>
 			$(function(){
 				// Start the TodoMVC app (defined in js/TodoMVC.js)

@@ -6,77 +6,84 @@ TodoMVC.module('TodoList.Views', function(Views, App, Backbone, Marionette, $, _
 	// Display an individual todo item, and respond to changes
 	// that are made to the item, including marking completed.
 
-	Views.ItemView = Marionette.ItemView.extend({
+	Views.ItemView = Marionette.Layout.extend({
 		tagName: 'li',
-			template: '#template-todoItemView',
+		template: '#template-todoItemView',
 
-			ui: {
-				edit: '.edit'
-			},
+		regions: {
+			tasksRegion: '#tasks'
+		},
 
-			events : {
-				'click .destroy': 'destroy',
-				'dblclick label': 'onEditClick',
-				'keypress .edit': 'onEditKeypress',
-        'blur .edit': 'onEditBlur',
-				'click .toggle' : 'toggle'
-			},
+		ui: {
+			edit: '.edit'
+		},
 
-			initialize: function() {
-				this.bindTo(this.model, 'change', this.render, this);
-			},
+		events : {
+			'click .destroy': 'destroy',
+			'dblclick label': 'onEditClick',
+			'keypress .edit': 'onEditKeypress',
+      'blur .edit': 'onEditBlur',
+			'click .toggle' : 'toggle'
+		},
 
-			onRender: function() {
-				this.$el.removeClass('active completed');
+		initialize: function() {
+			this.bindTo(this.model, 'change', this.render, this);
+		},
 
-				if (this.model.get('completed')) {
-					this.$el.addClass('completed');
-				} else {
-					this.$el.addClass('active');
-				}
-			},
+		onRender: function() {
+			this.$el.removeClass('active completed');
 
-			destroy: function() {
-				this.model.destroy();
-			},
+			if (this.model.get('completed')) {
+				this.$el.addClass('completed');
+			} else {
+				this.$el.addClass('active');
+			}
 
-			toggle: function() {
-				this.model.toggle().save();
-			},
+			tasks_controller = new App.TaskList.Controller({todo_id: this.model.id, region: this.tasksRegion});
+			tasks_controller.showTaskList()
+		},
 
-			onEditClick: function() {
-				this.$el.addClass('editing');
-				this.ui.edit.focus();
-			},
+		destroy: function() {
+			this.model.destroy();
+		},
 
-      updateTodo : function() {
-        var todoText = this.ui.edit.val();
-        if (todoText === '') {
-          return this.destroy();
-        }
-        this.setTodoText(todoText);
-        this.completeEdit();
-      },
+		toggle: function() {
+			this.model.toggle().save();
+		},
 
-      onEditBlur: function(e){
-        this.updateTodo();
-      },
+		onEditClick: function() {
+			this.$el.addClass('editing');
+			this.ui.edit.focus();
+		},
 
-			onEditKeypress: function(e) {
-				var ENTER_KEY = 13;
-				if (e.which === ENTER_KEY) {
-          this.updateTodo();
-        }
-			},
-
-      setTodoText: function(todoText){
-        if (todoText.trim() === ""){ return; }
-        this.model.set('title', todoText).save();
-      },
-
-      completeEdit: function(){
-        this.$el.removeClass('editing');
+    updateTodo : function() {
+      var todoText = this.ui.edit.val();
+      if (todoText === '') {
+        return this.destroy();
       }
+      this.setTodoText(todoText);
+      this.completeEdit();
+    },
+
+    onEditBlur: function(e){
+      this.updateTodo();
+    },
+
+		onEditKeypress: function(e) {
+			var ENTER_KEY = 13;
+			if (e.which === ENTER_KEY) {
+        this.updateTodo();
+      }
+		},
+
+    setTodoText: function(todoText){
+      if (todoText.trim() === ""){ return; }
+      this.model.set('title', todoText).save();
+    },
+
+    completeEdit: function(){
+      this.$el.removeClass('editing');
+    }
 	});
 
 	// Item List View
