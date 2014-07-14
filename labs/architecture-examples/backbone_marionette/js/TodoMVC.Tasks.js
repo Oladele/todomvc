@@ -18,15 +18,15 @@ TodoMVC.module('Tasks', function(Tasks, App, Backbone, Marionette, $, _) {
     },
 
     initialize: function(attributes, options) {
-      this.todo_id = attributes.todo_id
+      this.todo_id = attributes.todo_id || options.todo_id || options.collection.todo_id;
+      
+      this.localStorage = new Backbone.LocalStorage(this.todo_id);
 
-      // this.set('todo_id', this.todo_id);
+      this.set({todo_id: this.todo_id})
       if (this.isNew()) {
         this.set('created', Date.now());
       }
     },
-
-    localStorage: new Backbone.LocalStorage(localStorageKey),
 
     toggle: function() {
       return this.set('completed', !this.isCompleted());
@@ -44,10 +44,14 @@ TodoMVC.module('Tasks', function(Tasks, App, Backbone, Marionette, $, _) {
     model: Tasks.Task,
 
     initialize: function(models_arr, options) {
-      // this.todo_id = options.todo_id;
-    },
+      if (options && options.todo_id) {
+        this.todo_id = options.todo_id;
+      };
+      
+      this.localStorage = new Backbone.LocalStorage(this.todo_id);
 
-    localStorage: new Backbone.LocalStorage(localStorageKey),
+      this.fetch();
+    },
 
     getCompleted: function() {
       return this.filter(this._isCompleted);
