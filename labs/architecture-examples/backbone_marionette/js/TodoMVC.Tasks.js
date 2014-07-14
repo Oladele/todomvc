@@ -44,6 +44,7 @@ TodoMVC.module('Tasks', function(Tasks, App, Backbone, Marionette, $, _) {
     model: Tasks.Task,
 
     initialize: function(models_arr, options) {
+
       if (options && options.todo_id) {
         this.todo_id = options.todo_id;
       };

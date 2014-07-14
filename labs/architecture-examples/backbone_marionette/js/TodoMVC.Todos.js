@@ -18,9 +18,15 @@ TodoMVC.module('Todos', function(Todos, App, Backbone, Marionette, $, _) {
 		},
 
 		initialize: function() {
+			this.syncChildren()
 			if (this.isNew()) {
 				this.set('created', Date.now());
 			}
+		},
+
+		syncChildren: function(){
+			this.child_collection = new App.Tasks.TaskList([], {todo_id: this.id})
+			this.child_collection.fetch()
 		},
 
 		toggle: function() {
