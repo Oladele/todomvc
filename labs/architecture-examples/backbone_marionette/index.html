@@ -6,6 +6,7 @@
 		<title>Marionette • TodoMVC</title>
 		<link rel="stylesheet" href="../../../assets/base.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/todo.css">
     <link rel="stylesheet" href="css/task.css">
 		<!--[if IE]>
 		<script src="../../../assets/ie.js"></script>
@@ -45,7 +46,9 @@
 
 		<!-- template-taskItemView -->
 		<script type="text/html" id="template-taskItemView">
-			<div><%= title %></div>
+			<li>
+				<div class="task-title"><%= title %></div>
+			</li>
 		</script>
 
 		<script type="text/html" id="template-todoListCompositeView">
@@ -56,8 +59,12 @@
 
 		<!-- template-taskListCompositView -->
 		<script type="text/html" id="template-taskListCompositeView">
-			<div>Tasks</div>
 			<ul id="task-list"></ul>
+		</script>
+
+		<!-- livereload script -->
+		<script>
+			document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
 		</script>
 
 	</head>

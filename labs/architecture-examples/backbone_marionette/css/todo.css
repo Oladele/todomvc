@@ -1,0 +1,38 @@
+#todo-list li .toggle {
+margin: 0px;
+}
+
+#todo-list li .destroy {
+margin: 0px;
+}
+
+#todo-list li .new-task {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 50px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+  font-size: 22px;
+  color: #a88a8a;
+}
+
+#todo-list li .new-task:hover {
+  text-shadow: 0 0 1px #000,
+         0 0 10px rgba(199, 107, 107, 0.8);
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+#todo-list li .new-task:after {
+  content: 'task';
+}
+
+#todo-list li:hover .new-task {
+  display: block;
+}
