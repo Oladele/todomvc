@@ -18,16 +18,29 @@ TodoMVC.module('Todos', function(Todos, App, Backbone, Marionette, $, _) {
 		},
 
 		initialize: function() {
-			this.syncChildren()
+			this.child_collection = {};
+			this.children_stats = {
+				tasks_count: 0,
+				// tasks_completed, pending, etc
+			};
+
+			this.syncChildren();
 			if (this.isNew()) {
 				this.set('created', Date.now());
 			}
 		},
 
 		syncChildren: function(){
-			this.child_collection = new App.Tasks.TaskList([], {todo_id: this.id})
-			this.child_collection.fetch()
+			this.child_collection = new App.Tasks.TaskList([], {todo_id: this.id});
+
+			this.child_collection.on("all", function(a,b,c){
+				this.children_stats.tasks_count = b.models.length
+			}, this);
+
+			this.child_collection.fetch();
+
 		},
+
 
 		toggle: function() {
 			return this.set('completed', !this.isCompleted());

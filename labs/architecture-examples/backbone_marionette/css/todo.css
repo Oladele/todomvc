@@ -3,16 +3,16 @@ margin: 0px;
 }
 
 #todo-list li .destroy {
-margin: 0px;
+margin-top: 0px;
 }
 
 #todo-list li .new-task {
-  display: none;
+  /*display: none;*/
   position: absolute;
   top: 0;
-  right: 50px;
+  right: 60px;
   bottom: 0;
-  width: 40px;
+  width: 100px;
   height: 40px;
   margin: 0px;
   font-size: 22px;
@@ -30,7 +30,7 @@ margin: 0px;
 }
 
 #todo-list li .new-task:after {
-  content: 'task';
+  /*content: '∫';*/
 }
 
 #todo-list li:hover .new-task {
