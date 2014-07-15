@@ -38,7 +38,7 @@
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label><%= title %></label>
 				<button class="destroy"></button>
-				<button class="new-task">tasks(99)</button>
+				<button class="new-task">tasks(<%= v_attr_tasks_count %>)</button>
 				<div id="tasks"></div>
 			</div>
 			<input class="edit" value="<%= title %>">

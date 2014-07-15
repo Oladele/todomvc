@@ -19,6 +19,7 @@ TodoMVC.module('TodoList', function(TodoList, App, Backbone, Marionette, $, _) {
 
 	TodoList.Controller = function() {
 		this.todoList = new App.Todos.TodoList();
+		window.mytemp_todolist = this.todoList;
 	};
 
 	_.extend(TodoList.Controller.prototype, {
