@@ -39,11 +39,15 @@ TodoMVC.module('TodoList.Views', function(Views, App, Backbone, Marionette, $, _
 				this.$el.addClass('active');
 			}
 
+			this.showTaskList();
+		},
+
+		showTaskList: function(){
 			tasks_controller = new App.TaskList.Controller({
 				tasks: this.model.child_collection,
 				region: this.tasksRegion
 			});
-			tasks_controller.showTaskList()
+			tasks_controller.showTaskList();
 		},
 
 		destroy: function() {
