@@ -36,7 +36,6 @@ TodoMVC.module('Todos', function(Todos, App, Backbone, Marionette, $, _) {
 			this.child_collection.on(
 				"all", 
 				function(event_name,event_subject, xhr_response){
-					console.warn("Todo model syncChildren on 'all' event:", event_name, " event_subject:", event_subject);
 					this.children_stats.tasks_count = this.child_collection.length;
 					this.updateVirtualAttributes();
 				}, 
