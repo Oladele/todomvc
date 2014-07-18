@@ -27,7 +27,16 @@ TodoMVC.module('TodoList.Views', function(Views, App, Backbone, Marionette, $, _
 		},
 
 		initialize: function() {
-			this.bindTo(this.model, 'change', this.render, this);
+			// this.bindTo(this.model, 'change', this.render, this);
+			this.model.on("all", function(e_name, e_subject){
+				console.log("Todo item view model.on ALL:", e_name);
+			});
+		},
+
+		onShow: function(){
+			console.log("TodoList View onShow called")
+			console.log("TodoList View onShow v_attr_tasks_count:", this.model.get("v_attr_tasks_count"));
+			this.showTaskList();
 		},
 
 		onRender: function() {
@@ -39,7 +48,6 @@ TodoMVC.module('TodoList.Views', function(Views, App, Backbone, Marionette, $, _
 				this.$el.addClass('active');
 			}
 
-			this.showTaskList();
 		},
 
 		showTaskList: function(){

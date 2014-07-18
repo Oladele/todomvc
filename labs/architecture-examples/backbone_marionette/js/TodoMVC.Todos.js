@@ -38,6 +38,8 @@ TodoMVC.module('Todos', function(Todos, App, Backbone, Marionette, $, _) {
 				function(event_name,event_subject, xhr_response){
 					this.children_stats.tasks_count = this.child_collection.length;
 					this.updateVirtualAttributes();
+					console.log("Todo Model syncChildren event_name:", event_name);
+					console.log("Todo Model syncChildren v_attr_tasks_count:", this.get("v_attr_tasks_count"));
 				}, 
 				this
 			);
