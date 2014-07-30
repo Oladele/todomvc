@@ -11,6 +11,7 @@ TodoMVC.module('TaskList', function(TaskList, App, Backbone, Marionette, $, _) {
 
     showTaskList: function() {
       collection = this.tasklist;
+      window.myTaskList = collection;
       view = new TaskList.Views.ListView({ collection : collection });
       this.region.show(view);
     }
